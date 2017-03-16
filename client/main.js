@@ -3,20 +3,37 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
+Template.navigation.events({
+	'click .logout':function(event){
+		event.preventDefault();
+		Meteor.logout();
+		Router.go('login');
+	}
 });
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
+
+/*  Route configuration for the application */
+
+Router.configure({
+	layoutTemplate: 'header'
 });
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
+Router.route({'/',
+	name: 'home',
+	template:'home' ,
+});
+
+Router.route({'/about',
+	name: 'about'',
+	template: 'about',
+});
+
+Router.route({'/login',
+	name: 'login',
+	template: 'login',
+});
+
+Router.route({'contact',
+	name: 'contact',
+	template: 'contact',
 });

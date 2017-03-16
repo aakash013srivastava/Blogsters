@@ -3,23 +3,49 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
-  {{> info}}
+  {{> header}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="navigation">
+  <nav class="navbar navbar-inverse navbar-fixedtop>
+	  <div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/">Blogsters</a>
+		</div>
+		  <ul>
+			<li><a href="{{pathFor route='home'}}">Home</a></li>
+			<li><a href="{{pathFor route='contact'}}">Contact</a></li>
+			<li><a href="{{pathFor route='about'}}">About</a></li>
+			{{#if currentUser}}
+			<li><a href="{{pathFor route='login'}}">Login</a></li>
+			{{else}}
+			<li><a href="#" class=".logout">Logout</a></li>
+			{{/if}}
+		</ul>
+	  </div>
+  </nav>
 </template>
 
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+
+<template name="header">
+  <div id="header" style="height:100px;background-color:yellow;">
+  <h1>Blogsters - The Blogging Masters!</h1>
+  </div>
+  {{> navigation}}
+</template>
+
+<template name="home">
+	<h3>Home</h3>
+</template>
+
+<template name="contact">
+	<h3>Contact</h3>
+</template>
+
+<template name="about">
+	<h3>About</h3>
+</template>
+
+<template name="login">
+	<h3>Login</h3>
 </template>

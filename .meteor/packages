@@ -24,3 +24,5 @@ accounts-google
 google-config-ui
 iron:router
 twbs:bootstrap
+service-configuration
+accounts-ui

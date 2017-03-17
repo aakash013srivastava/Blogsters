@@ -8,6 +8,15 @@ Template.navigation.events({
 		event.preventDefault();
 		Meteor.logout();
 		Router.go('login');
+	},
+	'click #loginClick':function(event){
+		event.preventDefault();
+		Meteor.loginWithGoogle(function(err){
+			if(err)
+				console.log(err);
+			else
+				console.log("No error!");
+		});
 	}
 });
 
@@ -18,22 +27,36 @@ Router.configure({
 	layoutTemplate: 'header'
 });
 
-Router.route({'/',
+Router.route('/',{
 	name: 'home',
 	template:'home' ,
 });
 
-Router.route({'/about',
-	name: 'about'',
+Router.route('/about',{
+	name: 'about',
 	template: 'about',
 });
 
-Router.route({'/login',
+Router.route('contact',{
+	name: 'contact',
+	template: 'contact',
+});
+
+Router.route('/myPosts',{
+	name: 'myPosts',
+	template: 'myPosts',
+});
+
+Router.route('/myCommunities',{
+	name: 'myCommunities',
+	template: 'login',
+});
+
+
+Router.route('/login',{
 	name: 'login',
 	template: 'login',
 });
 
-Router.route({'contact',
-	name: 'contact',
-	template: 'contact',
-});
+
+

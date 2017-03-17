@@ -11,11 +11,13 @@ Template.navigation.events({
 	},
 	'click #loginClick':function(event){
 		event.preventDefault();
-		Meteor.loginWithGoogle(function(err){
+		Meteor.loginWithGoogle({
+			loginStyle: "popup"
+		},function(err){
 			if(err)
 				console.log(err);
 			else
-				console.log("No error!");
+				console.log("No error!:"+Meteor.user().email);
 		});
 	}
 });
@@ -49,7 +51,7 @@ Router.route('/myPosts',{
 
 Router.route('/myCommunities',{
 	name: 'myCommunities',
-	template: 'login',
+	template: 'myCommunities',
 });
 
 

@@ -26,3 +26,4 @@ iron:router
 twbs:bootstrap
 service-configuration
 accounts-ui
+mrt:jquery-ui

@@ -36,10 +36,9 @@
 			</li>
 			{{/if}}
 			</ul>
-			
-		
 	  </div>
   </nav>
+  
 </template>
 
 
@@ -66,6 +65,47 @@
 
 <template name="myPosts">
 	<h3>My Posts</h3>
+	
+<div class="container">
+	<div id="new_post" border="1px solid black">
+	<em><h2><b>New Post</b></h2></em>
+		<form>
+			<fieldset>
+			<div class="form-group">
+				<label for="title">Title</label>
+			</div>  
+			<div class="form-group">
+				  <input type="text" name="title" id="title" required>
+			</div>
+			<div class="form-group">
+				<label for="category">Category</label>
+			</div>
+			<div class="form-group">
+				<select name="category" id="category" >
+					<option value="select" selected>--select--</option>
+					<option value="Technology">Technology</option>
+					<option value="Business">Business</option>
+					<option value="Philosophy">Philosophy</option>
+					<option value="Finance">Finance</option>
+					<option value="World">World</option>
+				</select>
+			</div>
+  			<div class="form-group">
+				  <label for="content">Content</label>
+			</div>
+			<div class="form-group">
+				  <textarea name="content" id="content" rows="10" cols="100" required></textarea>
+			</div>
+
+			  <!-- Allow form submission with keyboard without duplicating the dialog button -->
+			  <div class="form-group">
+				<button  tabindex="-1" id="addPost" class="btn btn-default" name="submitPost" >Submit Post </button>
+			  </div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+	
 </template>
 
 

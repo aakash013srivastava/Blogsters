@@ -7,7 +7,7 @@
 </body>
 
 <template name="navigation">
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="position:relative">
 	  <div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="/">Blogsters</a>
@@ -44,14 +44,25 @@
 
 <template name="header">
   {{> navigation}}
-  <div id="header" style="height:80px;margin-top:50px;border:1px solid black">
-  <h2><em>Blogsters - The Blog Geeks!</em></h2>
-  </div>
+<div id="container" class="container" style="margin-left:5px">  
   {{> yield}}
+</div>
+
+<div id="sidebarRight" style="border-left:thick solid #ff0000;float:right">
+</div>
+
 </template>
 
 <template name="home">
 	<h3>Home</h3>
+	<div id="postList" name="postList">
+	{{#if currentUser}}
+		{{#each posts}}
+			{{posts_list.title}}
+		{{/each}}
+	{{/if}}
+	</div>
+	
 </template>
 
 <template name="contact">
@@ -64,23 +75,18 @@
 
 
 <template name="myPosts">
-	<h3>My Posts</h3>
-	
-<div class="container">
-	<div id="new_post" border="1px solid black">
-	<em><h2><b>New Post</b></h2></em>
+	<h3>MyPosts</h3>
+	<div id="new_post" style="width:600px;height:500px%;margin:40px;padding:5px;border: 1px solid black;background-color:#f5f5f0;border-radius:5px;position:relative">
+		<div id="new_post_header" style="border-bottom: 1px solid black;margin:5px">
+			<h4>Add a post</h4>
+		</div>
+		
 		<form>
 			<fieldset>
 			<div class="form-group">
 				<label for="title">Title</label>
-			</div>  
-			<div class="form-group">
-				  <input type="text" name="title" id="title" required>
-			</div>
-			<div class="form-group">
+				<input type="text" name="title" id="title" style="width:300px">
 				<label for="category">Category</label>
-			</div>
-			<div class="form-group">
 				<select name="category" id="category" >
 					<option value="select" selected>--select--</option>
 					<option value="Technology">Technology</option>
@@ -94,7 +100,7 @@
 				  <label for="content">Content</label>
 			</div>
 			<div class="form-group">
-				  <textarea name="content" id="content" rows="10" cols="100" required></textarea>
+				  <textarea name="content" id="content" rows="15" cols="70" required></textarea>
 			</div>
 
 			  <!-- Allow form submission with keyboard without duplicating the dialog button -->
@@ -104,7 +110,6 @@
 			</fieldset>
 		</form>
 	</div>
-</div>
 	
 </template>
 

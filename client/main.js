@@ -7,22 +7,22 @@ import './main.html';
 
 
 	Template.navigation.events({
-	'click .logout':function(event){
-		event.preventDefault();
-		Meteor.logout();
-		Router.go('login');
-	},
-	'click #loginClick':function(event){
-		event.preventDefault();
-		Meteor.loginWithGoogle({
-			loginStyle: "popup"
-		},function(err){
-			if(err)
-				console.log(err);
-			else
-				console.log("No error!:");
-		});
-	}
+		'click .logout':function(event){
+			event.preventDefault();
+			Meteor.logout();
+			Router.go('login');
+		},
+		'click #loginClick':function(event){
+			event.preventDefault();
+			Meteor.loginWithGoogle({
+				loginStyle: "popup"
+			},function(err){
+				if(err)
+					console.log(err);
+				else
+					console.log("No error!:");
+			});
+		}
 });
 
 	Template.myPosts.events({
@@ -32,7 +32,6 @@ import './main.html';
 			var user_id = Meteor.userId();
 			var title = $('#title').val();
 			var category = $('#category').val();
-			console.log("addpost called"+category);
 			var content = $('#content').val();
 			var createdAt = new Date();
 			var updatedAt = new Date();
@@ -42,13 +41,21 @@ import './main.html';
 				else 
 					console.log("No error upon insert");
 			});
-			console.log("Number of posts: "+Meteor.call('postsCount'));
-
+			Router.go('home',{success:true});
 			
+			//document.getElementById("container").innerHTML="<h3>Post added successfully</h3>";
 		}
 	});
 
 
+	Template.home.helpers({
+		posts_list:function(){
+			var posts = Meteor.call('showPosts',Meteor.userId());
+			console.log(posts.title);
+			return posts;
+		}
+	});
+	
 if(Meteor.isServer){
 
 

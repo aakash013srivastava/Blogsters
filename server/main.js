@@ -14,6 +14,9 @@ Meteor.methods({
 		updatedAt:updatedAt,
 		});
 	},
+	'showPosts': function(id){
+		return Posts.findOne({user_id:id});
+	},
 	'deletePost': function(id){
 		Posts.remove(id);
 	},

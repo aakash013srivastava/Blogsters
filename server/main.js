@@ -15,16 +15,14 @@ Meteor.methods({
 		});
 	},
 	'showPosts': function(id){
-		return Posts.findOne({user_id:id});
+		var post = Posts.find({'user_id':id}).fetch();
+		return post;
 	},
 	'deletePost': function(id){
 		Posts.remove(id);
 	},
 	'updatePost':function(id,title,content,category){
 		//Posts.update(id,{$set:{title:title,content:content,category:category,updatedAt:new Date()}});
-	},
-	'postsCount': function(){
-		return Posts.findOne();
 	}
 });
 

@@ -18,7 +18,6 @@
 			<li><a href="{{pathFor route='about'}}">About</a></li>
 			{{#if currentUser}}
 			<li><a href="{{pathFor route='myPosts'}}">My Posts</a></li>
-			<li><a href="{{pathFor route='myCommunities'}}">My Communities</a></li>
 			{{/if}}
 			</ul>
 			
@@ -57,9 +56,9 @@
 	<h3>Home</h3>
 	<div id="postList" name="postList">
 	{{#if currentUser}}
-		{{#each posts}}
-			{{posts_list.title}}
-		{{/each}}
+		
+
+		
 	{{/if}}
 	</div>
 	
@@ -114,9 +113,6 @@
 </template>
 
 
-<template name="myCommunities">
-	<h3>My Communities</h3>
-</template>
 
 
 <template name="login">

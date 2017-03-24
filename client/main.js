@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import {Mongo} from 'meteor/mongo';
+import { EJSON } from 'meteor/ejson'
 import {Posts} from '../imports/posts.js';
 import './main.html';
 
@@ -20,7 +21,7 @@ import './main.html';
 				if(err)
 					console.log(err);
 				else
-					console.log("No error!:");
+					console.log("No error!");
 			});
 		}
 });
@@ -37,11 +38,11 @@ import './main.html';
 			var updatedAt = new Date();
 			Meteor.call('addPost',user_id,title,category,content,createdAt,updatedAt,function(err){
 				if(err) 
-					console.log(err);
+					Router.go('myPosts',{success:false});
 				else 
-					console.log("No error upon insert");
+					Router.go('home',{success:true});
 			});
-			Router.go('home',{success:true});
+			
 			
 			//document.getElementById("container").innerHTML="<h3>Post added successfully</h3>";
 		}
@@ -49,17 +50,15 @@ import './main.html';
 
 
 	Template.home.helpers({
-		posts_list:function(){
-			var posts = Meteor.call('showPosts',Meteor.userId());
-			console.log(posts.title);
-			return posts;
+		'posts':function(){
+			Meteor.call('showPosts',Meteor.userId(),function(err,result){
+				if(err)
+					alert('Error');
+				else
+					alert(JSON.stringify(result));
+			});
 		}
 	});
-	
-if(Meteor.isServer){
-
-
-}
 
 
 /*  Route configuration for the application */
